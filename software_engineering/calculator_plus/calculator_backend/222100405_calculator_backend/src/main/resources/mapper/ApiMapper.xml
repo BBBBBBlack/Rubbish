@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.calculator_server.mapper.ApiMapper">
+
+    <select id="getDepRateTable" resultType="com.example.calculator_server.domain.DepRate">
+        select *
+        from dep_rate limit 1
+    </select>
+    <select id="getLoanRateTable" resultType="com.example.calculator_server.domain.LoanRate">
+        select *
+        from loan_rate limit 1
+    </select>
+
+    <update id="updateDepRateTable" parameterType="com.example.calculator_server.domain.DepRate">
+        UPDATE dep_rate
+        SET demand_dep = #{demandDep},
+            three_mon= #{threeMon},
+            six_mon= #{sixMon},
+            one_year= #{oneYear},
+            two_year= #{twoYear},
+            three_year= #{threeYear},
+            five_year= #{fiveYear}
+    </update>
+    <update id="updateLoanRateTable" parameterType="com.example.calculator_server.domain.LoanRate">
+        update loan_rate
+        set six_mon= #{sixMon},
+            one_year = #{oneYear},
+            one_to_three = #{oneToThree},
+            three_to_five = #{threeToFive},
+            five_year = #{fiveYear}
+    </update>
+    <insert id="addHistory">
+        insert into history
+        values (null, #{expression}, #{result})
+    </insert>
+    <select id="getHistory" resultType="com.example.calculator_server.domain.History">
+        SELECT *
+        FROM history
+        ORDER BY id DESC LIMIT 10
+    </select>
+</mapper>
