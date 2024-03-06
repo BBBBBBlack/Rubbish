@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.tea_demo.mapper.ImageMapper">
+
+
+    <select id="selectByStoreId" resultType="java.lang.String">
+        SELECT image_url
+        from store_image
+        where store_id = #{storeId}
+    </select>
+    <select id="selectByCommodityId" resultType="java.lang.String">
+        SELECT image_url
+        from commodity_image
+        where commodity_id = #{commodityId}
+    </select>
+</mapper>
